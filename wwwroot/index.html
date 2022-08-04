@@ -13,15 +13,15 @@
     </div>
     <div>
         <h2>Search by ID</h2>
-        <input type="text" id="prodId" size="5" />
+        <input type="text" id="prodId" placeholder="1,2,3..." size="5" />
         <input type="button" value="Search" onclick="find();" />
         <p id="Students" />
         <h2>Create Student</h2>
-        <input type="text" id="studentFirstName" placeholder="firstname" size="5" />
-        <input type="text" id="studentLastName" placeholder="lastname" size="5" />
-        <input type="text" id="studentDepartment" placeholder="Department" size="5" />
-        <input type="text" id="studentAddress" placeholder="address" size="5" />
-        <input type="text" id="studentCity" placeholder="city" size="5" />
+        <input type="text" id="studentFirstName" placeholder="firstname" size="15" />
+        <input type="text" id="studentLastName" placeholder="lastname" size="15" /> <br />
+        <input type="text" id="studentDepartment" placeholder="Department" size="15" />
+        <input type="text" id="studentAddress" placeholder="address" size="15" /><br />
+        <input type="text" id="studentCity" placeholder="city" size="15" /><br />
         <input type="button" value="Create" onclick="create();" />
         <p id="createStudents">
     </div>
@@ -44,7 +44,7 @@
         });
 
         function formatItem(item) {
-            return item.firstName + " " + item.lastName + " " + item.address + " " + item.city + " " + item.department;
+            return "[ID: " + item.id + "] - " + item.firstName + " " + item.lastName + " " + item.address + " " + item.city + " " + item.department;
 
         }
 
