@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Students App</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Students</h1>
+        <ul id="Students" />
+    </div>
+    <div>
+        <h2>Search by ID</h2>
+        <input type="text" id="prodId" size="5" />
+        <input type="button" value="Search" onclick="find();" />
+        <p id="Students" />
+        <h2>Create Student</h2>
+        <input type="text" id="studentFirstName" placeholder="firstname" size="5" />
+        <input type="text" id="studentLastName" placeholder="lastname" size="5" />
+        <input type="text" id="studentRole" placeholder="role" size="5" />
+        <input type="button" value="Create" onclick="create();" />
+        <p id="createStudents">
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = '/users';
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri)
+                .done(function (data) {
+                    console.log(data)
+                    // On success, 'data' contains a list of Studentss.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the Students.
+                        $('<li>', { text: formatItem(item) }).appendTo($('#Studentss'));
+                    });
+                });
+        });
+
+        function formatItem(item) {
+            return item.firstName + " " + item.lastName;
+
+        }
+
+        function find() {
+            var id = $('#prodId').val();
+            $.getJSON(uri + '/' + id)
+                .done(function (data) {
+                    $('#Students').text(formatItem(data));
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#Students').text('Error: ' + err);
+                });
+        }
+        function create() {
+            var fname = $('studentFirstName').val()
+            var lname = $('studentLastName').val()
+            var srole = $('studentRole').val()
+            $.ajax({
+                type: 'POST',
+                url: '/users',
+                data: JSON.stringify({
+                    firstName: fname,
+                    lastName: lname,
+                    role: srole
+                }),
+                success: function (data) { alert('data: ' + data); },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+        }
+    </script>
+</body>
+
+</html>
