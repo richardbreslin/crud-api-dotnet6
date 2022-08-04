@@ -1,10 +1,8 @@
 Implement GetAllStudents, and display each record as a list item in an html untyped list(the placeholder is the index.html page)
 
-Implement Search by student Id(parameter to be entered) and display each record as a list item in an html untyped list(the placeholder is the index.html page)----IHttpActionResult
 Implement the create verb to insert a record in the Students table using webapi
 
-
-table with Name, Address, City, and Department. Also, please make sure the implementation works in both
+fname lname address city role->department
 
 the index.html, and the Default.aspx pages 
 

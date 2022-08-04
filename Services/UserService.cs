@@ -47,8 +47,6 @@ public class UserService : IUserService
         // map model to new user object
         var user = _mapper.Map<User>(model);
 
-        // hash password
-        user.PasswordHash = BCrypt.HashPassword(model.Password);
 
         // save user
         _context.Users.Add(user);
@@ -62,10 +60,6 @@ public class UserService : IUserService
         // validate
         if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
             throw new AppException("User with the email '" + model.Email + "' already exists");
-
-        // hash password if it was entered
-        if (!string.IsNullOrEmpty(model.Password))
-            user.PasswordHash = BCrypt.HashPassword(model.Password);
 
         // copy model to user and save
         _mapper.Map(model, user);
