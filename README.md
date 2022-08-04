@@ -1,6 +1,5 @@
 # Simple CRUD API in .NET 6.0
 
-Uses in memory database.
 **Requires: .NET6**
 
 ### Usage:
