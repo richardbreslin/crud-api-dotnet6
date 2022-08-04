@@ -14,8 +14,4 @@ public class CreateRequest
     [Required]
     public string LastName { get; set; }
 
-    [Required]
-    [EnumDataType(typeof(Role))]
-    public string Role { get; set; }
-
 }
