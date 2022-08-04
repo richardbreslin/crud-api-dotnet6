@@ -19,7 +19,9 @@
         <h2>Create Student</h2>
         <input type="text" id="studentFirstName" placeholder="firstname" size="5" />
         <input type="text" id="studentLastName" placeholder="lastname" size="5" />
-        <input type="text" id="studentRole" placeholder="role" size="5" />
+        <input type="text" id="studentDepartment" placeholder="Department" size="5" />
+        <input type="text" id="studentAddress" placeholder="address" size="5" />
+        <input type="text" id="studentCity" placeholder="city" size="5" />
         <input type="button" value="Create" onclick="create();" />
         <p id="createStudents">
     </div>
@@ -42,7 +44,7 @@
         });
 
         function formatItem(item) {
-            return item.firstName + " " + item.lastName;
+            return item.firstName + " " + item.lastName + " " + item.address + " " + item.city + " " + item.department;
 
         }
 
@@ -57,18 +59,28 @@
                 });
         }
         function create() {
-            var fname = $('studentFirstName').val()
-            var lname = $('studentLastName').val()
-            var srole = $('studentRole').val()
+            var fname = $('#studentFirstName').val()
+            var lname = $('#studentLastName').val()
+            var department = $('#studentDepartment').val()
+            var addr = $('#studentDepartment').val()
+            var stuCity = $('#studentCity').val()
+            var payload = JSON.stringify({
+                firstName: fname,
+                lastName: lname,
+                Department: department,
+                address: addr,
+                city: stuCity
+            })
+
+
             $.ajax({
                 type: 'POST',
-                url: '/users',
-                data: JSON.stringify({
-                    firstName: fname,
-                    lastName: lname,
-                    role: srole
-                }),
-                success: function (data) { alert('data: ' + data); },
+                url: 'users',
+                data: payload,
+                success: function (data) {
+                    alert("Success!")
+                    window.location.reload();
+                },
                 contentType: "application/json",
                 dataType: 'json'
             });
