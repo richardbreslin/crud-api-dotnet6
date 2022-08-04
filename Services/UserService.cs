@@ -40,10 +40,6 @@ public class UserService : IUserService
 
     public void Create(CreateRequest model)
     {
-        // validate
-        if (_context.Users.Any(x => x.Email == model.Email))
-            throw new AppException("User with the email '" + model.Email + "' already exists");
-
         // map model to new user object
         var user = _mapper.Map<User>(model);
 
@@ -56,10 +52,6 @@ public class UserService : IUserService
     public void Update(int id, UpdateRequest model)
     {
         var user = getUser(id);
-
-        // validate
-        if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
-            throw new AppException("User with the email '" + model.Email + "' already exists");
 
         // copy model to user and save
         _mapper.Map(model, user);

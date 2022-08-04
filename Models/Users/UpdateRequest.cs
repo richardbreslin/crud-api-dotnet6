@@ -12,7 +12,4 @@ public class UpdateRequest
     [EnumDataType(typeof(Role))]
     public string Role { get; set; }
 
-    [EmailAddress]
-    public string Email { get; set; }
-
 }
